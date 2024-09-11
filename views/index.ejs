@@ -7,16 +7,97 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <%- include("partials/header.ejs")%>
+    <%- include("partials/header.ejs") %>
 
-    <% for(var i=0;i<Title.length;i++){ %>
-       <div class="cotainer">
-        <h2> <%= Title[i] %> </h2>
-        <p><strong><%= Author[i] %> </strong></p>
-     <p><%= Description[i] %></p>
-       </div>
+<main class="container mt-2">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic"><%= Title[0] %></h1>
+            <p class="lead my-2"><%= Author[0] %></p>
+            <p class="lead my-3"><%= Description[0] %></p>
+            <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Continue reading...</a></p>
+        </div>
+    </div>
+    
+    <div class="row mb-2">
+        <% for(var i=1; i<5; i++) { %>
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis"><%= Theme[i] %></strong>
+                    <h3 class="mb-0"><%= Title[i] %></h3>
+                    <div class="mb-1 text-body-secondary">Nov 12</div>
+                    <p class="card-text mb-auto"><%= Description[i] %></p>
+                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                        Continue reading
+                    </a>
+                </div>
+            </div>
+        </div>
         <% } %>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                From the Latest
+            </h3>
+            <% blogPosts.forEach(post => { %>
+            <article class="blog-post mb-4">
+                <h2 class="display-5 link-body-emphasis mb-1"><%= post.title %></h2>
+                <p class="blog-post-meta"><%= post.date %> <a href="#">Mark</a></p>
+                <%- post.content %> <!-- Render HTML content -->
+            </article>
+            <% }); %>
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <h4 class="fst-italic">Recent posts</h4>
+                <ul class="list-unstyled">
+                    <% for(var i=5; i<10; i++) { %>
+                    <li>
+                        <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
+                            <div class="col-lg-8">
+                                <h6 class="mb-0"><%= Title[i] %></h6>
+                                <small class="text-body-secondary">January 15, 2024</small>
+                            </div>
+                        </a>
+                    </li>
+                    <% } %>
+                </ul>
+                
+                <div class="p-4 mt-4">
+                    <h4 class="fst-italic">Archives</h4>
+                    <ol class="list-unstyled mb-0">
+                        <li><a href="#">March 2021</a></li>
+                        <li><a href="#">February 2021</a></li>
+                        <li><a href="#">January 2021</a></li>
+                        <li><a href="#">December 2020</a></li>
+                        <li><a href="#">November 2020</a></li>
+                        <li><a href="#">October 2020</a></li>
+                        <li><a href="#">September 2020</a></li>
+                        <li><a href="#">August 2020</a></li>
+                        <li><a href="#">July 2020</a></li>
+                        <li><a href="#">June 2020</a></li>
+                        <li><a href="#">May 2020</a></li>
+                        <li><a href="#">April 2020</a></li>
+                    </ol>
+                </div>
+
+                <div class="p-4 mt-4">
+                    <h4 class="fst-italic">Elsewhere</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
