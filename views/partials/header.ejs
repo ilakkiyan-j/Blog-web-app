@@ -1,23 +1,22 @@
-<h1 class="expand-lg">DailyDive</h1>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary justify-center">
-        <div class="container-fluid">
-          
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/create">Create</a>
-              </li>
-            </ul>
-            <form action="/search" method="get" class="d-flex">
-              <input class="form-control me-2" type="search" name="query" placeholder="Search themes..." aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-          </div>
-        </div>
-      </nav>
+
+
+<header class="p-3 mb-3 border-bottom">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+        <span class="fs-4">Daily Blogs</span>
+      </a>
+  
+      <form action="/search" method="get" class="d-flex">
+        <input class="form-control me-2" type="search" name="query" placeholder="Search themes..." aria-label="Search">
+        <button class="btn btn-outline-primary me-2" type="submit">Search</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/create'" redi>
+          Create
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+
+
+

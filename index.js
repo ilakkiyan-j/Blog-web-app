@@ -253,7 +253,7 @@ var data = {
   ]
 };
 
-
+app.set('view engine', 'ejs');
 
 app.get("/",(req,res)=>{
   res.render("index.ejs",data)
@@ -268,7 +268,7 @@ app.post("/submit",(req,res)=>{
 data['Title'].unshift(newTitle);
 data['Description'].unshift(newDescription);
 data['Theme'].unshift(newTheme);
-  res.render("index.ejs",data)
+  res.redirect("/")
 });
 
 app.get("/create",(req,res)=>{
@@ -279,8 +279,30 @@ app.get("/about",(req,res)=>{
   res.render("about.ejs")
 });
 
-app.get("/search",(req,res)=>{
-  res.render("index.ejs");
+
+// Function to filter by both author and theme
+function filterByAuthorAndTheme(data, authorName, theme) {
+  return data.Author
+    .map((author, index) => ({
+      Author: author,
+      Title: data.Title[index],
+      Description: data.Description[index],
+      Theme: data.Theme[index]
+    }))
+    .filter(item => (authorName ? item.Author === authorName : true) ||
+                    (theme ? item.Theme === theme : true));
+}
+
+app.get("/search", (req, res) => {
+  const query = req.query.query || '';
+  
+  // Perform filtering based on query
+  const filteredPosts = filterByAuthorAndTheme(data, query, query);
+
+  res.render("search", { 
+    posts: filteredPosts, 
+    query: query
+  });
 });
 
 app.listen(port, () => {
